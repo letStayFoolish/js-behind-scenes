@@ -93,7 +93,7 @@ function deleteAllProductsFromCart() {
     console.log("All products deleted from cart");
 }
 ``` 
-How `this` Keyword Works
+## How `this` Keyword Works
 
 * Within method - `this` is pointing to the Object which calling this method;
 * Simple function call - this is undefined;
