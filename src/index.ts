@@ -78,28 +78,45 @@ function deleteAllProductsFromCart() {
 
 console.log(this); // pointing to the top Object Window
 
-const addExpr = function (a: number, b: number) {
-    console.log(this); // undefined (in sloppy mode it would point to Window Object);
-
-    return a + b;
-}
+// const addExpr = function (a: number, b: number) {
+//     console.log(this); // undefined (in sloppy mode it would point to Window Object);
+//
+//     return a + b;
+// }
 
 addExpr(1, 6);
 
-const calcExpr = (a: number, b: number) => {
-    console.log(this); // within arrow functions, `this` is point to Window Object; Depends on what `this` word is in parent scope
-    // in this case this will point what this means in (parent) global scope - Window Object
-    return a + b;
-}
+// const calcExpr = (a: number, b: number) => {
+//     console.log(this); // within arrow functions, `this` is point to Window Object; Depends on what `this` word is in parent scope
+//     // in this case this will point what this means in (parent) global scope - Window Object
+//     return a + b;
+// }
 
-calcExpr(5, 5); // Arrow function
+// calcExpr(5, 5); // Arrow function
 
 const user = {
     name: "Nemanja",
+    surname: "Karaklajic",
     age: 35,
     profession: "programmer",
     sayHello: function () {
         console.log(`Hello, my name is ${this.name}`); // this will point to the Object user (user.name);
+
+        // Solution 1
+        // const self = this;
+        // const getFullName = function() {
+        //     console.log(self)
+        //     console.log(`Fullname: ${self.name} ${self.surname}`)
+        // }
+
+        // Solution 2
+        // Introduce this within arrow function
+        const getFullName = () => {
+            console.log(this)
+            console.log(`Fullname: ${this.name} ${this.surname}`)
+        }
+
+        getFullName();
     }
 }
 

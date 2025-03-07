@@ -131,3 +131,34 @@ const user = {
 
 user.sayHello();
 ```
+
+One more example of how to use `this` keyword within regular functions and arrow functions:
+```js
+const user = {
+    name: "Nemanja",
+    surname: "Karaklajic",
+    age: 35,
+    profession: "programmer",
+    sayHello: function () {
+        console.log(`Hello, my name is ${this.name}`); // this will point to the Object user (user.name);
+
+        // Solution 1
+        // const self = this;
+        // const getFullName = function() {
+        //     console.log(self)
+        //     console.log(`Fullname: ${self.name} ${self.surname}`)
+        // }
+
+        // Solution 2
+        // Introduce this within arrow function
+        const getFullName = () => {
+            console.log(this)
+            console.log(`Fullname: ${this.name} ${this.surname}`)
+        }
+
+        getFullName();
+    }
+}
+
+user.sayHello();
+```
