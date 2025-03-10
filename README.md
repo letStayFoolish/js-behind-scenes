@@ -46,13 +46,26 @@ SOURCE CODE -> (_compilation_) MACHINE CODE -> (_execution_) Program running
 ![JavaScript Engine](./src/assets/screen-js-02.png)
 
 
+### Inside execution context:
+ Variable environment: `let`, `const`, and `var` declarations; Functions, `arguments` object.
+
+Arrow functions does not include `this` keyword nor `arguments`.
+
+**CALL STACK** place where execution context get stacked on top of each other, to keep track where we are in execution.
+
+Global execution context is pop-out when we close browser window(or tab). Only then program is really finish.
+
 ## Scoping
 
-**Where variables live - Variables Scoping**
+**Scope** - place or environment in which certain variable is **declared**. Where do variables live. There is **global** scope, **function** scope and (ES6)**block** scope.
+
+**Scoping**: How our program variables are **organized** and **accessed**.
 
 **Three type of scopes: The global scope, scope defined by functions, scopes defined by blocks**
 
 **Only `let` and `const` variables are block-scoped. Variables defined with `var` are end up in the closest functional scope.**
+
+Functions are also **block scoped** (only in strict mode).
 
 **Every scope has access to all the variables from all its outer scopes. This is scope chain.**
 
@@ -93,6 +106,10 @@ const x = first();
 ```
 
 ## Hoisting
+
+**Hoisting:** Makes some types of variables accessible/usable before they are actually declared.
+
+Before execution, code is scanned for variable declarations, and for each variable a new property is created in the **variable environment object**.
 
 **Calling function before its declaration - sometimes it seems like functions are moved to the top of scope chain**
 
@@ -161,7 +178,7 @@ console.log(this); // undefined (in sloppy mode it would point to Window Object,
 addExpr(1, 6);
 
 const calcExpr = (a: number, b: number) => {
-console.log(this); // within arrow functions, `this` is point to Window Object; Depends on what `this` word is in parent scope
+console.log(this); // within arrow functions, `this` is point to (parent) Window Object; Depends on what `this` word is in parent scope
 // in this case `this` will point what this means in (parent) global scope - Window Object
 return a + b;
 }
@@ -209,4 +226,36 @@ const user = {
 }
 
 user.sayHello();
+```
+
+**Primitive** type variables are stored in **call stack**. Identifier is pointing to the `address` of call stack's piece of memory, which has its own `value`. Addresses are immutable, so if we change the value, that means that new address is created, and our variables is stored with that new address (and new value).
+
+**Reference** type values (objects) are stored in the **Heap** memory. Identifier is pointing to piece of memory (_call stack_), which points to the object that is in _heap_ memory by using memory address as its value.
+The piece of memory in the _call stack_ has a reference to the piece of memory in the _heap_ which holds `object`. That's why object are called **reference type**. Heap memory is almost unlimited, that is whu we store object there, instead of stack.
+
+```ts
+type ObjectType = {
+    age: number,
+    firstName: string,
+    lastName: string,
+    greet?: () => void,
+}
+
+const meObj: ObjectType = {
+    age: 22,
+    firstName: "MyName",
+    lastName: "MyLastName",
+}
+
+const myFriend = meObj; // by this we are just copping the reference which is pointing to the same object's value;
+
+myFriend.age = 35;
+
+const johnObj = Object.assign({}, meObj); // (shallow copy)
+johnObj.age = 44;
+johnObj.greet = function() {console.log(this.firstName)}
+
+console.log(meObj)
+console.log(myFriend)
+console.log(johnObj)
 ```

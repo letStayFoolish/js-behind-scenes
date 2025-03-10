@@ -42,82 +42,123 @@
 // console.log(addArrow(8, 5)); // Error: Can't access the function before initialization
 
 
-function addDecl(a: number, b: number) {
-    return a + b;
-}
-
-const addExpr = function (a: number, b: number) {
-    return a + b;
-}
-
-const addArrow = (a: number, b: number) => a + b;
-
-// Example to show why should we avoid using `var`
-
-// if(!cartProducts) deleteAllProductsFromCart(); // In this case deleteAllProductsFromCart() is called, because `cartProducts` is set to undefined (due to how hoisting works with vars).
-
-// Our products would be removed from cart even though cartProducts are set tot 10;
-var cartProducts = 10;
-
-function deleteAllProductsFromCart() {
-    console.log("All products deleted from cart");
-}
-
-// How `this` Keyword Works
-/**
- * Within method - `this` is pointing to the Object which calling this method;
- *
- * Simple function call - this is undefined;
- *
- * Arrow functions - `this` of surrounding function (lexical this);
- *
- * Event listener - `this` = <DOM element that handler is attached to>
- *
- * `this` does **NOT** point to the function itself, and also **NOT** to its variable environment!
- */
-
-console.log(this); // pointing to the top Object Window
-
-// const addExpr = function (a: number, b: number) {
-//     console.log(this); // undefined (in sloppy mode it would point to Window Object);
+// function addDecl(a: number, b: number) {
+//     return a + b;
+// }
 //
+// const addExpr = function (a: number, b: number) {
 //     return a + b;
 // }
-
-addExpr(1, 6);
-
-// const calcExpr = (a: number, b: number) => {
-//     console.log(this); // within arrow functions, `this` is point to Window Object; Depends on what `this` word is in parent scope
-//     // in this case this will point what this means in (parent) global scope - Window Object
-//     return a + b;
+//
+// const addArrow = (a: number, b: number) => a + b;
+//
+// // Example to show why should we avoid using `var`
+//
+// // if(!cartProducts) deleteAllProductsFromCart(); // In this case deleteAllProductsFromCart() is called, because `cartProducts` is set to undefined (due to how hoisting works with vars).
+//
+// // Our products would be removed from cart even though cartProducts are set tot 10;
+// var cartProducts = 10;
+//
+// function deleteAllProductsFromCart() {
+//     console.log("All products deleted from cart");
 // }
+//
+// // How `this` Keyword Works
+// /**
+//  * Within method - `this` is pointing to the Object which calling this method;
+//  *
+//  * Simple function call - this is undefined;
+//  *
+//  * Arrow functions - `this` of surrounding function (lexical this);
+//  *
+//  * Event listener - `this` = <DOM element that handler is attached to>
+//  *
+//  * `this` does **NOT** point to the function itself, and also **NOT** to its variable environment!
+//  */
+//
+// console.log(this); // pointing to the top Object Window
+//
+// // const addExpr = function (a: number, b: number) {
+// //     console.log(this); // undefined (in sloppy mode it would point to Window Object);
+// //
+// //     return a + b;
+// // }
+//
+// addExpr(1, 6);
+//
+// // const calcExpr = (a: number, b: number) => {
+// //     console.log(this); // within arrow functions, `this` is point to Window Object; Depends on what `this` word is in parent scope
+// //     // in this case this will point what this means in (parent) global scope - Window Object
+// //     return a + b;
+// // }
+//
+// // calcExpr(5, 5); // Arrow function
+//
+// const user = {
+//     name: "Nemanja",
+//     surname: "Karaklajic",
+//     age: 35,
+//     profession: "programmer",
+//     sayHello: function () {
+//         console.log(`Hello, my name is ${this.name}`); // this will point to the Object user (user.name);
+//
+//         // Solution 1
+//         // const self = this;
+//         // const getFullName = function() {
+//         //     console.log(self)
+//         //     console.log(`Fullname: ${self.name} ${self.surname}`)
+//         // }
+//
+//         // Solution 2
+//         // Introduce this within arrow function
+//         const getFullName = () => {
+//             console.log(this)
+//             console.log(`Fullname: ${this.name} ${this.surname}`)
+//         }
+//
+//         getFullName();
+//     }
+// }
+//
+// user.sayHello();
 
-// calcExpr(5, 5); // Arrow function
+function findEvenNumber(number: number) {
+    if(number < 0) return -1;
 
-const user = {
-    name: "Nemanja",
-    surname: "Karaklajic",
-    age: 35,
-    profession: "programmer",
-    sayHello: function () {
-        console.log(`Hello, my name is ${this.name}`); // this will point to the Object user (user.name);
+    let counter = 0;
+    while(counter <= number) {
+         if(counter % 2 == 0){
+             console.log(counter);
+         }
 
-        // Solution 1
-        // const self = this;
-        // const getFullName = function() {
-        //     console.log(self)
-        //     console.log(`Fullname: ${self.name} ${self.surname}`)
-        // }
-
-        // Solution 2
-        // Introduce this within arrow function
-        const getFullName = () => {
-            console.log(this)
-            console.log(`Fullname: ${this.name} ${this.surname}`)
-        }
-
-        getFullName();
+    counter++
     }
+
 }
 
-user.sayHello();
+findEvenNumber(55)
+
+type ObjectType = {
+    age: number,
+    firstName: string,
+    lastName: string,
+    greet?: () => void;
+}
+
+const meObj: ObjectType = {
+    age: 22,
+    firstName: "MyName",
+    lastName: "MyLastName",
+}
+
+const myFriend = meObj; // by this we are just copping the reference which is pointing to the same object's value;
+
+myFriend.age = 35;
+
+const johnObj = Object.assign({}, meObj); // (shallow copy)
+johnObj.age = 44;
+johnObj.greet = function() {console.log(this.firstName)}
+
+console.log(meObj)
+console.log(myFriend)
+console.log(johnObj)
