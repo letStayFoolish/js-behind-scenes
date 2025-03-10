@@ -1,6 +1,52 @@
 # JavaScript behind the scene
 
-#s# Scoping
+## Basics
+
+**JS is high-level language - does not manage sources (memory, processor)**
+
+**Garbage collection - memory management. Cleaning the memory so we do not have to.**
+
+**Just in time compiled language. Converting human-readable code to machine code (zeros) is COMPILING.**
+
+**Multi-paradigm language - Procedural programming, OOP, Functional programming.**
+
+**JS is prototype-based object-oriented language. (e.g. Array.prototype.push)**
+
+**First-class functions - functions are simply treated as variables. We can pass functions into other functions...**
+
+**JS is dynamically typed.**
+
+**Single-threaded. One task at the time.**
+
+**Non-blocking event loop. Takes long-running tasks, executes them in the background, and puts them back in the main thread once they are finished.**
+
+## JavaScript engine and runetime
+
+JS engine - program that **executes** javascript code. Every browser has own JS engine. (**V8 Engine**).
+
+Every **JS Engine** includes **call stack** and **heap**.
+
+Call stack is where our code is executed. Execution context.
+
+Heap is where **objects are stored**.
+
+For code to be executed, frist we need to compile our code into machine code - **compiling**.
+
+[//]: # (NO PORTABLE FILE as a mid-step)
+SOURCE CODE -> (_compilation_) MACHINE CODE -> (_execution_) Program running
+
+**Compilation**: Entire code is converted into machine code at once, and written to the binary file that can be executed by computer.
+
+**Interpretation** Interpreter runs through the source code and executes it line by line.
+
+![JavaScript Engine](./src/assets/screen-js-01.png)
+
+## Runtime in the browser
+
+![JavaScript Engine](./src/assets/screen-js-02.png)
+
+
+## Scoping
 
 **Where variables live - Variables Scoping**
 
