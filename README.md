@@ -20,7 +20,7 @@
 
 **Non-blocking event loop. Takes long-running tasks, executes them in the background, and puts them back in the main thread once they are finished.**
 
-## JavaScript engine and runetime
+## JavaScript engine and runtime
 
 JS engine - program that **executes** javascript code. Every browser has own JS engine. (**V8 Engine**).
 
@@ -30,7 +30,7 @@ Call stack is where our code is executed. Execution context.
 
 Heap is where **objects are stored**.
 
-For code to be executed, frist we need to compile our code into machine code - **compiling**.
+For code to be executed, first we need to compile our code into machine code - **compiling**.
 
 [//]: # (NO PORTABLE FILE as a mid-step)
 SOURCE CODE -> (_compilation_) MACHINE CODE -> (_execution_) Program running
@@ -57,7 +57,7 @@ Global execution context is pop-out when we close browser window(or tab). Only t
 
 ## Scoping
 
-**Scope** - place or environment in which certain variable is **declared**. Where do variables live. There is **global** scope, **function** scope and (ES6)**block** scope.
+**Scope** - place or environment in which certain variable is **declared**. Where do variables live? There is **global** scope, **function** scope and (ES6)**block** scope.
 
 **Scoping**: How our program variables are **organized** and **accessed**.
 
@@ -71,7 +71,7 @@ Functions are also **block scoped** (only in strict mode).
 
 **When a variable is not in the current scope, the engine looks up in the scope chain until it finds the variable looking for. This is called variable lookup.**
 
-**Scope chain is one-way street. The scope will never has access to the variables of inner scope.**
+**Scope chain is one-way street. The scope will never have access to the variables of inner scope.**
 
 **The scope chain has nothing to the order in which functions were called.**
 
