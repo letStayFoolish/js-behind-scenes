@@ -47,7 +47,7 @@ SOURCE CODE -> (_compilation_) MACHINE CODE -> (_execution_) Program running
 
 
 ### Inside execution context:
- Variable environment: `let`, `const`, and `var` declarations; Functions, `arguments` object.
+ Variable environment: `let`, `const`, and `var` declarations; Functions, `arguments` object, scope chain, `this` keyword.
 
 Arrow functions does not include `this` keyword nor `arguments`.
 
@@ -61,7 +61,17 @@ Global execution context is pop-out when we close browser window(or tab). Only t
 
 **Scoping**: How our program variables are **organized** and **accessed**.
 
-**Three type of scopes: The global scope, scope defined by functions, scopes defined by blocks**
+**Three type of scopes: The global scope, scope defined by functions (local scope), scopes defined by blocks**
+
+Block would be anything between curly bracers.
+
+```ts
+{
+    "block scope..."
+}
+```
+![scope-screen.png](src/assets/scope-screen.png)
+![scope-screen-02.png](src/assets/scope-screen-02.png)
 
 **Only `let` and `const` variables are block-scoped. Variables defined with `var` are end up in the closest functional scope.**
 
