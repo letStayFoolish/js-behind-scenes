@@ -75,6 +75,8 @@ Block would be anything between curly bracers.
 
 **Only `let` and `const` variables are block-scoped. Variables defined with `var` are end up in the closest functional scope.**
 
+### Block-scoped: means available only within scope in which they are declared (created).
+
 Functions are also **block scoped** (only in strict mode).
 
 **Every scope has access to all the variables from all its outer scopes. This is scope chain.**
